@@ -1,0 +1,90 @@
+/*reset*/
+
+* {
+    padding: 0;
+    margin: 0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+/*container*/
+#container{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -326px;
+    margin-top: -161px;
+    box-sizing: border-box;
+    width:652px;
+    height: 322px;
+    border: 1px solid #999;
+    z-index: 10;
+    overflow: hidden;
+}
+#t-head{
+    box-sizing: border-box;
+    height: 50px;
+    border-bottom: 1px solid #999; 
+}
+#t-head h2{
+    font-size: 16px;
+    color: #fff;
+    line-height: 50px;
+    text-indent: 10px;
+    background: rgb(132, 132, 132);
+}
+#t-body{
+    position: relative;
+    height: 272px;
+    background-color: #fff;
+}
+#t-body p{
+    font-size: 16px;
+    line-height: 20px;
+    padding: 10px;
+}
+#t-foot{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 0;
+}
+#t-foot .btn{
+    font-size: 16px;
+    width: 160px;
+    height: 50px;
+    background: rgb(132, 132, 132);
+    outline: 0;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+}
+#t-foot .btn-1{
+   margin-right: 10px;
+}
+/*mask*/
+#mask{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .3);
+}
+
+/*btn*/
+#btn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -80px;
+    margin-top: -25px;
+    font-size: 16px;
+    width: 160px;
+    height: 50px;
+    background: rgb(132, 132, 132);
+    outline: 0;
+    border: 0;
+    color: #fff;
+    cursor: pointer; 
+}

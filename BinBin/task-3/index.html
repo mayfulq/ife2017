@@ -1,0 +1,179 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>IFE JavaScript Task 03</title>
+</head>
+
+<body>
+
+  <ul id="source">
+    <li>北京空气质量：<b>90</b></li>
+    <li>上海空气质量：<b>70</b></li>
+    <li>天津空气质量：<b>80</b></li>
+    <li>广州空气质量：<b>50</b></li>
+    <li>深圳空气质量：<b>40</b></li>
+    <li>福州空气质量：<b>32</b></li>
+    <li>成都空气质量：<b>90</b></li>
+    <li>北s空气质量：<b>98</b></li>
+    <li>上s空气质量：<b>76</b></li>
+    <li>天s空气质量：<b>85</b></li>
+    <li>广s空气质量：<b>52</b></li>
+    <li>深s空气质量：<b>41</b></li>
+    <li>福s空气质量：<b>34</b></li>
+    <li>成s空气质量：<b>92</b></li>
+  </ul>
+
+  <ul id="resort">
+    <!-- 
+    <li>第一名：北京空气质量：<b>90</b></li>
+    <li>第二名：北京空气质量：<b>90</b></li>
+    <li>第三名：北京空气质量：<b>90</b></li>
+     -->
+
+  </ul>
+
+  <button id="sort-btn">排序</button>
+
+  <script type="text/javascript">
+    /**
+     * getData方法
+     * 读取id为source的列表，获取其中城市名字及城市对应的空气质量
+     * 返回一个数组，格式见函数中示例
+     */
+    function getData() {
+      /*
+      coding here
+      */
+
+      /*
+      data = [
+        ["北京", 90],
+        ["北京", 90]
+        ……
+      ]
+      */
+      // 方法一
+      // var Ul = document.getElementById('source');
+      // var Li = Ul.getElementsByTagName('li');
+      // var data = [];
+      // var a = [];
+      // var city = [];
+      // var num = [];
+      // for (var i = 0, len = Li.length; i < len; i++) {
+      //   a[i] = Li[i].innerHTML.slice(0, 2) + Li[i].innerHTML.slice(10, 12);
+      // }
+
+
+      // for (var i = 0; i < a.length; i++) {
+      //   for (var j = 0; j < 1; j++) {
+      //     city[i] = [];
+      //     city[i][j] = a[i].slice(0, 2);
+      //   }
+      // }
+
+      // for (var i = 0; i < a.length; i++) {
+      //   for (var j = 0; j < 1; j++) {
+      //     num[i] = [];
+      //     num[i][j] = parseInt(a[i].slice(2, 4));
+      //   }
+      // }
+
+      // for (var i = 0; i < city.length; i++) {
+
+      //   data[i] = city[i].concat(num[i]);
+
+      // }
+      // console.log(data);
+
+      // return data;
+      // 方法二
+      var data=[];
+      var source=document.getElementById('source');
+      for(var i=0,len=source.children.length;i<len;i++){
+            var li=source.children[i];
+            var city=li.innerHTML.split('空气质量：')[0];
+            var num=li.firstElementChild.innerHTML;
+            data.push([city,num]);
+      }
+      return data;
+
+    }
+    // getData();
+    /**
+     * sortAqiData
+     * 按空气质量对data进行从小到大的排序
+     * 返回一个排序后的数组
+     */
+    function sortAqiData(data) {
+      var d = data.sort(function (a, b) {
+        return a[1] - b[1];
+      })
+      return d;
+    }
+
+    /**
+     * render
+     * 将排好序的城市及空气质量指数，输出显示到id位resort的列表中
+     * 格式见ul中的注释的部分
+     */
+    function render(data) {
+      // 思路一
+      var Ul = document.getElementById('resort');
+      for (var i = 0, len = data.length; i < len; i++) {
+        var Li = document.createElement('li');
+        Li.innerHTML = '第' + chinanum(i + 1) + '名' + '：' + data[i][0] + '空气质量为：' + '<b>' + data[i][1] + '</b>';
+        Ul.appendChild(Li);
+        Ul.style.listStyle = "none";　　
+      }
+      //  思路二
+      // var Ul = document.getElementById('resort');
+      // var num=["一","二","三","四","五","六","七","八","九","十"];
+      // var li='';
+      // for(var i=0,len=data.length;i<len;i++){
+      //   li+='<li>第'+num[i]+'名：'+data[i][0]+'空气质量：'+data[i][1]+'</li>';
+      // }
+      // Ul.innerHTML=li;
+    }
+
+    function btnHandle() {
+      var aqiData = getData();
+      aqiData = sortAqiData(aqiData);
+      render(aqiData);
+    }
+
+    function init() {
+
+      // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
+      var btn = document.getElementById('sort-btn');
+      btn.onclick = function () {
+        btnHandle();
+      }
+
+    }
+
+    init();
+    // 数字转汉字(1-19)
+    function chinanum(num) {
+      var china = new Array('一', '二', '三', '四', '五', '六', '七', '八', '九', '十');
+      var arr = new Array();
+      if (num < 10) {
+        var english = num.toString().split("");
+        for (var i = 0; i < english.length; i++) {
+          arr[i] = china[english[i] - 1];
+        }
+      } else if (num == 10) {
+        arr[10] = china[9];
+      } else if (num > 10) {
+        var english = num.toString().slice(1, 2).split("");
+        for (var i = 0; i < english.length; i++) {
+          arr[i] = china[9] + china[english[i] - 1];
+        }
+      }
+      return arr.join("")
+    }
+  </script>
+</body>
+
+</html>

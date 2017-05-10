@@ -1,0 +1,49 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <title>Task 03</title>
+</head>
+
+<body>
+  <form id="form">
+    <div id="tab">
+      <div class="f">
+        <div class="box">
+          <input type="radio" name="kind" id="inSchool" value="1" class="radio">
+          <label for="inSchool" class="lab"><span class="dot"></span></label>
+        </div>
+        <label for="inSchool" class="lab-1">在校生</label>
+      </div>
+      <div class="f">
+        <div class="box">
+          <input type="radio" name="kind" id="outSchool" value="2" class="radio">
+          <label for="outSchool" class="lab"><span class="dot"></span></label>
+        </div>
+        <label for="outSchool" class="lab-1">非在校生</label>
+      </div>
+    </div>
+    <div class="demo" id="demo-1">
+      <label for="area">学校</label>
+      <select id="area" name="area">
+           <option value="1">北京</option>
+           <option value="2">上海</option>
+           <option value="3">广州</option>
+        </select>
+      <select id="school" name="school">
+           <!--<option value="1"></option>-->
+      </select>
+    </div>
+    <div class="demo" id="demo-2">
+      <label for="company">就业单位</label>
+      <input type="text" id="company" name="company" class="company">
+    </div>
+  </form>
+
+
+  <script src="js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>IFE JavaScript Task 06</title>
+</head>
+<style>
+  ul {
+    padding: 0;
+  }
+
+  li {
+    float: left;
+    color: #fff;
+    background-color: #f00;
+    list-style: none;
+    margin: 0 10px 10px 0;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  textarea {
+    display: block;
+    resize: none;
+    margin-bottom: 10px;
+  }
+
+  div {
+    margin-bottom: 10px;
+  }
+</style>
+
+<body>
+  <div>
+    <textarea id="num" rows="10" cols="60"></textarea>
+    <input type="button" id="leftIn" value="左侧入">
+    <input type="button" id="rightIn" value="右侧入">
+    <input type="button" id="leftOut" value="左侧出">
+    <input type="button" id="rightOut" value="右侧出">
+  </div>
+  <div>
+    <input id="key" type="text">
+    <input type="button" id="search" value="查询">
+  </div>
+  <ul id="source"></ul>
+
+  <script type="text/javascript">
+    var ul = document.getElementById('source');
+    var right_In = document.getElementById('rightIn');
+    var left_In = document.getElementById('leftIn');
+    var right_Out = document.getElementById('rightOut');
+    var left_Out = document.getElementById('leftOut');
+    var key = document.getElementById('key');
+    var search_b = document.getElementById('search');
+
+    // 右侧入
+    function rightIn() {
+      var num = document.getElementById('num');
+      var data = splitInput(num.value);
+      if (!!num.value) {
+        for (var i = 0; i < data.length; i++) {
+          var li = document.createElement('li');
+          li.innerHTML = data[i];
+          ul.appendChild(li);
+        }
+      }
+      num.value = '';
+    }
+    right_In.addEventListener('click', rightIn);
+
+    // 左侧入
+    function leftIn() {
+      var num = document.getElementById('num');
+      var first_li = ul.firstElementChild;
+      var data = splitInput(num.value);
+      if (!!num.value) {
+        for (var i = 0; i < data.length; i++) {
+          var li = document.createElement('li');
+          li.innerHTML = data[i];
+          ul.insertBefore(li, first_li);
+        }
+      }
+      num.value = '';
+    }
+    left_In.addEventListener('click', leftIn);
+
+    // 左侧出
+    function leftOut() {
+      var first_li = ul.firstElementChild;
+      ul.removeChild(first_li);
+      alert(first_li.innerHTML);
+    }
+    left_Out.addEventListener('click', leftOut);
+
+    // 右侧出
+    function rightOut() {
+      var last_li = ul.lastElementChild;
+      ul.removeChild(last_li);
+      alert(last_li.innerHTML);
+    }
+    right_Out.addEventListener('click', rightOut);
+
+    // 点击任意一个，移除
+    function remove(e) {
+      var target = e.target || e.srcElement;
+      ul.removeChild(target);
+      alert(target.innerHTML);
+    }
+    ul.addEventListener('click', remove);
+
+
+
+    // 正则验证
+    function splitInput(input) {
+      var newqueue = input.split(/\s{1,}|、|,|，/); //匹配1~多个空格，或、号，或，号
+      return newqueue;
+    }
+
+    // 搜索
+    function search() {
+      for (var i = 0; i < ul.children.length; i++) {
+        if (ul.children[i].innerHTML.match(key.value)) {
+          ul.children[i].style.backgroundColor = '#00f';
+        } else {
+          ul.children[i].style.backgroundColor = '#f00';
+        }
+      }
+    }
+    search_b.addEventListener('click', search);
+  </script>
+</body>
+
+</html>

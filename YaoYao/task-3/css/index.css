@@ -1,0 +1,102 @@
+/*reset*/
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+select,input {
+    outline: 0;
+}
+
+/*form*/
+
+form {
+    width: 510px;
+    margin: 100px auto;
+    text-align: right;
+    font-size: 0;
+}
+
+.f {
+    display: inline-block;
+    border: 0;
+    margin-right: 100px;
+}
+
+.radio {
+    display: none;
+}
+
+.box {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #ddd;
+    border-radius: 50%;
+    position: relative;
+    vertical-align: middle;
+    margin-top: -12px;
+    margin-right: 10px;
+}
+
+.box .lab {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ddd;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    cursor: pointer;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.lab-1 {
+    font: 20px '黑体';
+    cursor: pointer;
+}
+
+.box input[type=radio]:checked+label {
+    background: rgb(52, 151, 255);
+}
+
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+#area {
+    margin-right: 50px;
+}
+
+select {
+    font-size: 16px;
+    width: 190px;
+    height: 38px;
+}
+
+.demo {
+    display: none;
+    margin-top: 100px;
+}
+
+.demo label {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.company {
+    width: 430px;
+    height: 38px;
+}

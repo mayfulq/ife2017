@@ -1,0 +1,148 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>IFE JavaScript Task 05</title>
+</head>
+<style>
+  ul {
+    display: flex;
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  li {
+    width: 20px;
+    text-indent: -9999px;
+    background-color: #f00;
+    list-style: none;
+    margin-right: 3px;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+  <input id="num" type="text" name="num">
+  <input type="button" id="leftIn" value="左侧入">
+  <input type="button" id="rightIn" value="右侧入">
+  <input type="button" id="leftOut" value="左侧出">
+  <input type="button" id="rightOut" value="右侧出">
+  <input type="button" id="rank_s" name='rank_s' value="排序(从小到大)">
+  <input type="button" id="rank_b" name='rank_b' value="排序(从大到小)">
+  <ul id="source">
+    <!--<li>90</li>-->
+  </ul>
+
+
+  <script type="text/javascript">
+    var ul = document.getElementById('source');
+    var right_In = document.getElementById('rightIn');
+    var left_In = document.getElementById('leftIn');
+    var right_Out = document.getElementById('rightOut');
+    var left_Out = document.getElementById('leftOut');
+    var rank_s = document.getElementById('rank_s');
+    var rank_b = document.getElementById('rank_b');
+    // 右侧入
+    function rightIn() {
+      var num = document.getElementById('num');
+      var source = document.getElementById('source');
+      var li = document.createElement('li');
+      var li_len = source.children.length;
+      if (li_len < 60) {
+        if (!!num.value && 10 <= parseInt(num.value) && parseInt(num.value) <= 100) {
+          li.innerHTML = num.value;
+          li.style.height = num.value + 'px';
+          ul.appendChild(li);
+        } else {
+          alert('请输入10-100之间的数字！');
+        }
+
+      } else {
+        alert('队列元素数量最多限制为60个!');
+      }
+      num.value = '';
+    }
+
+    right_In.addEventListener('click', rightIn);
+
+    // 左侧入
+    function leftIn() {
+      var num = document.getElementById('num');
+      var source = document.getElementById('source');
+      var li = document.createElement('li');
+      var li_len = source.children.length;
+      var first_li = ul.firstElementChild;
+      if (li_len < 60) {
+        if (!!num.value && 10 <= parseInt(num.value) && parseInt(num.value) <= 100) {
+          li.innerHTML = num.value;
+          li.style.height = num.value + 'px';
+          ul.insertBefore(li, first_li);
+        } else {
+          alert('请输入10-100之间的数字！');
+        }
+      } else {
+        alert('队列元素数量最多限制为60个!');
+      }
+
+      num.value = '';
+    }
+    left_In.addEventListener('click', leftIn);
+
+    // 左侧出
+    function leftOut() {
+      var first_li = ul.firstElementChild;
+      ul.removeChild(first_li);
+      alert(first_li.innerHTML);
+    }
+    left_Out.addEventListener('click', leftOut);
+
+    // 右侧出
+    function rightOut() {
+      var last_li = ul.lastElementChild;
+      ul.removeChild(last_li);
+      alert(last_li.innerHTML);
+    }
+    right_Out.addEventListener('click', rightOut);
+
+    // 点击任意一个，移除
+    function remove(e) {
+      var target = e.target || e.srcElement;
+      ul.removeChild(target);
+      alert(target.innerHTML);
+    }
+    ul.addEventListener('click', remove);
+
+    function rank(e) {
+      var li = document.getElementsByTagName('li');
+      var arr = [];
+      for (var i = 0; i < li.length; i++) {
+        arr[i] = li[i].innerHTML;
+      }
+      var target = e.target || e.srcElement;
+      if (target.name == 'rank_s') {
+        var b = arr.sort(function (a, b) {
+          return a - b;
+        })
+      } else if (target.name == 'rank_b') {
+        var b = arr.sort(function (a, b) {
+          return b - a;
+        })
+      }
+      ul.innerHTML = '';
+      for (var i = 0; i < b.length; i++) {
+        var li = document.createElement('li');
+        li.innerHTML = b[i];
+        li.style.height = b[i] + 'px';
+        ul.appendChild(li);
+      }
+    }
+    // 排序(从小到大)
+    rank_s.addEventListener('click', rank);
+
+    // 排序(从大到小)
+    rank_b.addEventListener('click', rank);
+  </script>
+</body>
+
+</html>

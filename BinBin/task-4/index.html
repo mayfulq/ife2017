@@ -1,0 +1,93 @@
+<!DOCTYPE>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>IFE JavaScript Task 04</title>
+</head>
+<style>
+  ul {
+    padding: 0;
+  }
+
+  li {
+    float: left;
+    width: 45px;
+    height: 45px;
+    color: #fff;
+    text-align: center;
+    line-height: 45px;
+    background-color: #f00;
+    list-style: none;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+  <input id="num" type="text" name="num">
+  <input type="button" id="leftIn" value="左侧入">
+  <input type="button" id="rightIn" value="右侧入">
+  <input type="button" id="leftOut" value="左侧出">
+  <input type="button" id="rightOut" value="右侧出">
+  <ul id="source"></ul>
+
+
+  <script type="text/javascript">
+    var ul = document.getElementById('source');
+    var right_In = document.getElementById('rightIn');
+    var left_In = document.getElementById('leftIn');
+    var right_Out = document.getElementById('rightOut');
+    var left_Out = document.getElementById('leftOut');
+    // 右侧入
+    function rightIn() {
+      var num = document.getElementById('num');
+      var li = document.createElement('li');
+      if (!!num.value) {
+        li.innerHTML = num.value;
+        ul.appendChild(li);
+      }
+      num.value = '';
+    }
+    right_In.addEventListener('click', rightIn);
+
+    // 左侧入
+    function leftIn() {
+      var num = document.getElementById('num');
+      var li = document.createElement('li');
+      var first_li = ul.firstElementChild;
+      if (!!num.value) {
+        li.innerHTML = num.value;
+        ul.insertBefore(li, first_li);
+      }
+      num.value = '';
+    }
+    left_In.addEventListener('click', leftIn);
+
+    // 左侧出
+    function leftOut() {
+      var first_li = ul.firstElementChild;
+      ul.removeChild(first_li);
+      alert(first_li.innerHTML);
+    }
+    left_Out.addEventListener('click', leftOut);
+
+    // 右侧出
+    function rightOut() {
+      var last_li = ul.lastElementChild;
+      ul.removeChild(last_li);
+      alert(last_li.innerHTML);
+    }
+    right_Out.addEventListener('click', rightOut);
+
+    // 点击任意一个，移除
+    function remove(e) {
+      var target = e.target || e.srcElement;
+      ul.removeChild(target);
+      alert(target.innerHTML);
+    }
+    ul.addEventListener('click', remove);
+  </script>
+</body>
+
+</html>
